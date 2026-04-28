@@ -4,15 +4,22 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Microsoft YaHei', 'SimHei', sans-serif;
+html, body {
+    width: 100%;
+    height: 100%;
     overflow-x: hidden;
-    background: linear-gradient(135deg, #001a4d 0%, #003d99 50%, #001f5c 100%);
-    min-height: 100vh;
-    position: relative;
 }
 
-/* 背景装饰效果 */
+body {
+    font-family: 'Microsoft YaHei', 'SimHei', sans-serif;
+    background: linear-gradient(135deg, #0a1a3f 0%, #1a3a6f 25%, #0f2557 50%, #1a3a6f 75%, #0a1a3f 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    position: relative;
+    color: #fff;
+}
+
+/* 背景效果 */
 .background {
     position: fixed;
     top: 0;
@@ -21,221 +28,382 @@ body {
     height: 100%;
     z-index: 0;
     pointer-events: none;
+    overflow: hidden;
+}
+
+.glow-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+    animation: float 8s ease-in-out infinite;
+}
+
+.glow:nth-child(1) {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #4da6ff 0%, transparent 70%);
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.glow:nth-child(2) {
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, #ffd700 0%, transparent 70%);
+    top: 50%;
+    right: 10%;
+    animation-delay: 2s;
+}
+
+.glow:nth-child(3) {
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, #4da6ff 0%, transparent 70%);
+    bottom: 5%;
+    left: 50%;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(30px); }
 }
 
 .stars {
     position: absolute;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    animation: starTwinkle 4s infinite;
 }
 
-.stars::before,
-.stars::after {
+.stars::before {
     content: '';
     position: absolute;
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(2px 2px at 20px 30px, #eac100, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 60px 70px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 50px 50px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 130px 80px, #fff, rgba(0,0,0,0));
+        radial-gradient(1px 1px at 20% 30%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 60% 70%, #ffd700, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 50% 50%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 80% 10%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 90% 60%, #ffd700, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 30% 80%, white, rgba(0,0,0,0));
     background-size: 200px 200px;
-    animation: twinkle 5s infinite;
+    background-repeat: repeat;
+}
+
+@keyframes starTwinkle {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
 }
 
 .waves {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: 
-        linear-gradient(90deg, transparent 0%, rgba(100, 200, 255, 0.1) 50%, transparent 100%),
-        linear-gradient(0deg, transparent 0%, rgba(100, 200, 255, 0.05) 50%, transparent 100%);
-    animation: wave 8s infinite linear;
-}
-
-@keyframes twinkle {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
+    background: linear-gradient(90deg, transparent 0%, rgba(100, 180, 255, 0.05) 50%, transparent 100%);
+    animation: wave 6s infinite linear;
 }
 
 @keyframes wave {
-    0% { transform: translateX(0) translateY(0); }
-    100% { transform: translateX(50px) translateY(20px); }
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
 }
 
-/* 主容器 */
+/* 容器 */
 .container {
     position: relative;
     z-index: 1;
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 30px 20px;
 }
 
-/* 头部区域 */
+/* 头部 */
 .header {
     text-align: center;
-    margin-bottom: 50px;
-    animation: fadeInDown 1s ease-out;
+    margin-bottom: 40px;
 }
 
 .header h1 {
-    font-size: 3em;
+    font-size: 2.5em;
     color: #fff;
-    text-shadow: 0 0 20px rgba(234, 193, 0, 0.5);
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.6),
+                 0 0 60px rgba(77, 166, 255, 0.3);
     margin-bottom: 10px;
     font-weight: bold;
     letter-spacing: 2px;
+    animation: fadeInDown 0.8s ease-out;
 }
 
 .header .subtitle {
-    font-size: 1.5em;
+    font-size: 1.3em;
     color: #b0d9ff;
-    text-shadow: 0 0 10px rgba(100, 200, 255, 0.3);
-    letter-spacing: 3px;
+    text-shadow: 0 0 15px rgba(100, 200, 255, 0.4);
+    letter-spacing: 2px;
+    animation: fadeInDown 1s ease-out;
 }
 
-/* 奖杯装饰 */
-.trophy-section {
-    text-align: center;
-    margin: 40px 0;
+/* 第一部分：顶部 */
+.section-top {
+    margin-bottom: 60px;
+}
+
+.top-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    margin-top: 30px;
     animation: fadeInUp 1s ease-out;
 }
 
-.trophy {
-    display: inline-block;
+/* 大奖杯样式 */
+.trophy-large {
+    flex: 0 0 auto;
+    position: relative;
+    width: 200px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.trophy-large.left {
+    animation: bounce 2s infinite;
+}
+
+.trophy-large.center {
+    animation: bounce 2.5s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.trophy-cup-large {
     position: relative;
     width: 120px;
-    height: 150px;
+    height: 140px;
 }
 
-.trophy-cup {
-    position: absolute;
-    width: 80px;
-    height: 100px;
-    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffa500 100%);
-    border-radius: 10px 10px 30px 30px;
-    left: 20px;
-    top: 30px;
-    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
-    animation: shine 3s infinite;
+.cup-body {
+    width: 100px;
+    height: 110px;
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 30%, #ff8c00 70%, #ff6347 100%);
+    border-radius: 15px 15px 50px 50px;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 
+        inset -5px -5px 10px rgba(0,0,0,0.3),
+        0 10px 30px rgba(255, 215, 0, 0.8),
+        0 0 50px rgba(255, 215, 0, 0.5);
 }
 
-.trophy-cup::before {
+.cup-body::before {
     content: '';
     position: absolute;
-    width: 20px;
-    height: 40px;
-    border: 3px solid #ffd700;
-    border-left: none;
-    border-radius: 0 20px 20px 0;
-    right: -25px;
-    top: 15px;
+    width: 80%;
+    height: 40%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 70%);
+    border-radius: 15px 15px 30px 30px;
+    top: 5px;
+    left: 10%;
 }
 
-.trophy-cup::after {
-    content: '';
+.cup-handle {
     position: absolute;
-    width: 60px;
-    height: 10px;
-    background: #ffa500;
-    bottom: -12px;
-    left: 10px;
-    border-radius: 5px;
-}
-
-.trophy-star {
-    position: absolute;
-    width: 60px;
+    width: 50px;
     height: 60px;
-    top: -20px;
-    left: 30px;
-    animation: rotate 10s linear infinite;
+    border: 4px solid #ffd700;
+    border-left: none;
+    border-radius: 0 35px 35px 0;
+    right: -40px;
+    top: 25px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
 }
 
-.trophy-star::before {
-    content: '★';
-    font-size: 60px;
+.cup-base {
+    width: 130px;
+    height: 20px;
+    background: linear-gradient(135deg, #ff8c00 0%, #ffd700 50%, #ff8c00 100%);
+    border-radius: 10px;
+    margin-top: 5px;
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5),
+                inset 0 -2px 5px rgba(0,0,0,0.3);
+}
+
+.trophy-star-large {
+    font-size: 80px;
     color: #ffd700;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    margin-top: -100px;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 1);
+    animation: rotateStar 4s linear infinite;
 }
 
-@keyframes shine {
-    0%, 100% { filter: drop-shadow(0 10px 30px rgba(255, 215, 0, 0.6)); }
-    50% { filter: drop-shadow(0 10px 50px rgba(255, 215, 0, 1)); }
-}
-
-@keyframes rotate {
+@keyframes rotateStar {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
-/* 员工展示区域 */
-.employees-section {
-    margin: 60px 0;
+/* 顶部员工照片 */
+.employees-top {
+    flex: 1;
+    text-align: center;
 }
 
-.employees-grid {
+.employee-photos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 30px;
-    padding: 40px 20px;
-    background: rgba(0, 30, 80, 0.4);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(100, 200, 255, 0.3);
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    justify-items: center;
+    animation: fadeInRight 1s ease-out;
 }
 
-/* 员工卡片 */
+.employee-photo {
+    width: 120px;
+    height: 140px;
+    border: 5px solid #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4),
+                0 0 20px rgba(100, 200, 255, 0.3);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.employee-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 装饰光线 */
+.decoration-right {
+    flex: 0 0 auto;
+    position: relative;
+    width: 100px;
+    height: 250px;
+}
+
+.light-streak {
+    position: absolute;
+    width: 30px;
+    height: 300px;
+    background: linear-gradient(90deg, transparent 0%, rgba(100, 200, 255, 0.3) 50%, transparent 100%);
+    animation: slideDown 3s infinite;
+}
+
+.light-streak:nth-child(1) {
+    right: 20px;
+    animation-delay: 0s;
+}
+
+.light-streak:nth-child(2) {
+    right: 50px;
+    animation-delay: 1s;
+}
+
+@keyframes slideDown {
+    0% { transform: translateY(-300px); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(300px); opacity: 0; }
+}
+
+/* 第二部分：中间 */
+.section-middle {
+    margin: 80px 0;
+    background: rgba(10, 30, 80, 0.3);
+    border-radius: 30px;
+    padding: 50px 30px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(100, 200, 255, 0.2);
+    animation: fadeInUp 1.2s ease-out;
+}
+
+.middle-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.middle-left {
+    flex: 0 0 100px;
+}
+
+.employees-middle-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+    flex: 1;
+    max-width: 800px;
+    justify-items: center;
+}
+
 .employee-card {
     text-align: center;
-    animation: fadeInUp 0.6s ease-out;
+    animation: fadeInUp 0.8s ease-out;
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .employee-card:hover {
-    transform: translateY(-10px);
-}
-
-.employee-avatar-wrapper {
-    position: relative;
-    width: 140px;
-    height: 140px;
-    margin: 0 auto 15px;
+    transform: scale(1.1) translateY(-10px);
 }
 
 .employee-avatar {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
-    padding: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 15px;
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5)); }
+    50% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)); }
 }
 
 .employee-avatar img {
-    width: 134px;
-    height: 134px;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
-    border: 3px solid #001a4d;
+    border: 4px solid #ffd700;
     object-fit: cover;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6),
+                inset 0 0 10px rgba(0,0,0,0.2);
 }
 
 .employee-avatar::before {
+    content: '♛';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.employee-avatar::after {
     content: '';
     position: absolute;
     width: 100%;
     height: 100%;
-    border: 3px solid #d4af37;
+    border: 3px solid #ffd700;
     border-radius: 50%;
-    top: -8px;
-    left: -8px;
+    top: 0;
+    left: 0;
     animation: rotateBorder 4s linear infinite;
 }
 
@@ -244,56 +412,90 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-.employee-number {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #ffd700;
-    color: #001a4d;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 12px;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-}
-
 .employee-name {
     color: #fff;
-    font-size: 14px;
-    margin-top: 10px;
+    font-size: 13px;
     font-weight: bold;
-    text-shadow: 0 0 5px rgba(100, 200, 255, 0.3);
+    text-shadow: 0 0 5px rgba(100, 200, 255, 0.4);
 }
 
-/* 底部统计 */
-.footer {
-    text-align: center;
-    margin-top: 60px;
-    padding: 30px;
-    color: #b0d9ff;
-    border-top: 2px solid rgba(100, 200, 255, 0.3);
-    font-size: 16px;
+/* 装饰奖杯 */
+.trophy-decoration {
+    flex: 0 0 auto;
+    position: relative;
+    width: 140px;
+    height: 180px;
+    animation: bounce 3s infinite;
 }
 
-.footer p {
-    margin: 10px 0;
+.trophy-cup-decoration {
+    position: relative;
+    width: 90px;
+    height: 100px;
+    margin: 0 auto;
 }
 
-.footer span {
+.trophy-cup-decoration .cup-body {
+    width: 70px;
+    height: 80px;
+}
+
+.trophy-cup-decoration .cup-handle {
+    width: 35px;
+    height: 45px;
+    border-width: 3px;
+    right: -28px;
+    top: 18px;
+}
+
+.trophy-cup-decoration .cup-base {
+    width: 100px;
+}
+
+.trophy-star-decoration {
+    font-size: 50px;
     color: #ffd700;
-    font-weight: bold;
-    font-size: 18px;
+    margin-top: -60px;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 1);
+    animation: rotateStar 4s linear infinite;
+}
+
+/* 第三部分：底部 */
+.section-bottom {
+    margin-top: 100px;
+    padding: 60px 20px;
+    animation: fadeInUp 1.4s ease-out;
+}
+
+.bottom-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+}
+
+.bottom-employee {
+    width: 140px;
+    height: 160px;
+    border: 5px solid #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(255, 215, 0, 0.5),
+                0 0 30px rgba(100, 200, 255, 0.4);
+    animation: fadeInUp 1s ease-out;
+}
+
+.bottom-employee img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* 动画 */
 @keyframes fadeInDown {
     from {
         opacity: 0;
-        transform: translateY(-30px);
+        transform: translateY(-40px);
     }
     to {
         opacity: 1;
@@ -304,7 +506,7 @@ body {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(40px);
     }
     to {
         opacity: 1;
@@ -312,35 +514,48 @@ body {
     }
 }
 
-/* 响应式设计 */
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 响应式 */
 @media (max-width: 1200px) {
-    .employees-grid {
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    .top-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .employee-photos-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .employees-middle-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
     }
 }
 
 @media (max-width: 768px) {
     .header h1 {
-        font-size: 2em;
+        font-size: 1.8em;
     }
 
-    .header .subtitle {
-        font-size: 1.2em;
+    .employee-photos-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .employees-grid {
-        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    .employees-middle-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .bottom-wrapper {
         gap: 20px;
-        padding: 20px;
-    }
-
-    .employee-avatar-wrapper {
-        width: 100px;
-        height: 100px;
-    }
-
-    .employee-avatar img {
-        width: 94px;
-        height: 94px;
     }
 }

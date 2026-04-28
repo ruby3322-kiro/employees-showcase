@@ -9,37 +9,96 @@
 <body>
     <!-- 背景装饰 -->
     <div class="background">
+        <div class="glow-elements">
+            <div class="glow"></div>
+            <div class="glow"></div>
+            <div class="glow"></div>
+        </div>
         <div class="stars"></div>
         <div class="waves"></div>
     </div>
 
     <div class="container">
-        <!-- 标题区域 -->
-        <header class="header">
-            <h1>亚马逊中国客服中心</h1>
-            <p class="subtitle">优秀员工展示</p>
-        </header>
+        <!-- 第一部分：标题和大奖杯 -->
+        <section class="section-top">
+            <header class="header">
+                <h1>亚马逊中国客服中心</h1>
+                <p class="subtitle">优秀员工展示</p>
+            </header>
 
-        <!-- 奖杯装饰 -->
-        <div class="trophy-section">
-            <div class="trophy">
-                <div class="trophy-star"></div>
-                <div class="trophy-cup"></div>
-            </div>
-        </div>
+            <div class="top-content">
+                <!-- 左侧大奖杯 -->
+                <div class="trophy-large left">
+                    <div class="trophy-cup-large">
+                        <div class="cup-body"></div>
+                        <div class="cup-handle"></div>
+                        <div class="cup-base"></div>
+                    </div>
+                    <div class="trophy-star-large">★</div>
+                </div>
 
-        <!-- 员工网格展示 -->
-        <section class="employees-section">
-            <div class="employees-grid" id="employeesGrid">
-                <!-- 员工卡片会由 JavaScript 动态生成 -->
+                <!-- 中间员工照片 -->
+                <div class="employees-top">
+                    <div class="employee-photos-grid" id="topEmployees">
+                        <!-- 动态生成 -->
+                    </div>
+                </div>
+
+                <!-- 右侧装饰 -->
+                <div class="decoration-right">
+                    <div class="light-streak"></div>
+                    <div class="light-streak"></div>
+                </div>
             </div>
         </section>
 
-        <!-- 底部统计 -->
-        <footer class="footer">
-            <p>团队规模: <span id="totalEmployees">100</span> 人</p>
-            <p>© 2026 亚马逊中国客服中心</p>
-        </footer>
+        <!-- 第二部分：员工列表（皇冠圆形头像）-->
+        <section class="section-middle">
+            <div class="middle-wrapper">
+                <!-- 左侧文字（可选） -->
+                <div class="middle-left"></div>
+
+                <!-- 中间员工网格 -->
+                <div class="employees-middle-grid" id="middleEmployees">
+                    <!-- 动态生成 -->
+                </div>
+
+                <!-- 右侧装饰奖杯 -->
+                <div class="trophy-decoration">
+                    <div class="trophy-cup-decoration">
+                        <div class="cup-body"></div>
+                        <div class="cup-handle"></div>
+                        <div class="cup-base"></div>
+                    </div>
+                    <div class="trophy-star-decoration">★</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第三部分：底部员工展示 -->
+        <section class="section-bottom">
+            <div class="bottom-wrapper">
+                <!-- 左侧员工照片 -->
+                <div class="bottom-employee bottom-left" id="bottomLeft">
+                    <!-- 动态生成 -->
+                </div>
+
+                <!-- 中间大奖杯 -->
+                <div class="trophy-large center">
+                    <div class="trophy-cup-large">
+                        <div class="cup-body"></div>
+                        <div class="cup-handle"></div>
+                        <div class="cup-base"></div>
+                    </div>
+                    <div class="trophy-star-large">★</div>
+                </div>
+
+                <!-- 右侧员工照片 -->
+                <div class="bottom-employee bottom-right" id="bottomRight">
+                    <!-- 动态生成 -->
+                </div>
+            </div>
+        </section>
     </div>
 
     <script src="script.js"></script>
