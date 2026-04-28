@@ -1,0 +1,346 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', 'SimHei', sans-serif;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #001a4d 0%, #003d99 50%, #001f5c 100%);
+    min-height: 100vh;
+    position: relative;
+}
+
+/* 背景装饰效果 */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.stars::before,
+.stars::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #eac100, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 60px 70px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 50px 50px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 130px 80px, #fff, rgba(0,0,0,0));
+    background-size: 200px 200px;
+    animation: twinkle 5s infinite;
+}
+
+.waves {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(90deg, transparent 0%, rgba(100, 200, 255, 0.1) 50%, transparent 100%),
+        linear-gradient(0deg, transparent 0%, rgba(100, 200, 255, 0.05) 50%, transparent 100%);
+    animation: wave 8s infinite linear;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+@keyframes wave {
+    0% { transform: translateX(0) translateY(0); }
+    100% { transform: translateX(50px) translateY(20px); }
+}
+
+/* 主容器 */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* 头部区域 */
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+    animation: fadeInDown 1s ease-out;
+}
+
+.header h1 {
+    font-size: 3em;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(234, 193, 0, 0.5);
+    margin-bottom: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.header .subtitle {
+    font-size: 1.5em;
+    color: #b0d9ff;
+    text-shadow: 0 0 10px rgba(100, 200, 255, 0.3);
+    letter-spacing: 3px;
+}
+
+/* 奖杯装饰 */
+.trophy-section {
+    text-align: center;
+    margin: 40px 0;
+    animation: fadeInUp 1s ease-out;
+}
+
+.trophy {
+    display: inline-block;
+    position: relative;
+    width: 120px;
+    height: 150px;
+}
+
+.trophy-cup {
+    position: absolute;
+    width: 80px;
+    height: 100px;
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffa500 100%);
+    border-radius: 10px 10px 30px 30px;
+    left: 20px;
+    top: 30px;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
+    animation: shine 3s infinite;
+}
+
+.trophy-cup::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 40px;
+    border: 3px solid #ffd700;
+    border-left: none;
+    border-radius: 0 20px 20px 0;
+    right: -25px;
+    top: 15px;
+}
+
+.trophy-cup::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 10px;
+    background: #ffa500;
+    bottom: -12px;
+    left: 10px;
+    border-radius: 5px;
+}
+
+.trophy-star {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: -20px;
+    left: 30px;
+    animation: rotate 10s linear infinite;
+}
+
+.trophy-star::before {
+    content: '★';
+    font-size: 60px;
+    color: #ffd700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+}
+
+@keyframes shine {
+    0%, 100% { filter: drop-shadow(0 10px 30px rgba(255, 215, 0, 0.6)); }
+    50% { filter: drop-shadow(0 10px 50px rgba(255, 215, 0, 1)); }
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 员工展示区域 */
+.employees-section {
+    margin: 60px 0;
+}
+
+.employees-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 30px;
+    padding: 40px 20px;
+    background: rgba(0, 30, 80, 0.4);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(100, 200, 255, 0.3);
+}
+
+/* 员工卡片 */
+.employee-card {
+    text-align: center;
+    animation: fadeInUp 0.6s ease-out;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.employee-card:hover {
+    transform: translateY(-10px);
+}
+
+.employee-avatar-wrapper {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 15px;
+}
+
+.employee-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+}
+
+.employee-avatar img {
+    width: 134px;
+    height: 134px;
+    border-radius: 50%;
+    border: 3px solid #001a4d;
+    object-fit: cover;
+}
+
+.employee-avatar::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid #d4af37;
+    border-radius: 50%;
+    top: -8px;
+    left: -8px;
+    animation: rotateBorder 4s linear infinite;
+}
+
+@keyframes rotateBorder {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.employee-number {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ffd700;
+    color: #001a4d;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 12px;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.employee-name {
+    color: #fff;
+    font-size: 14px;
+    margin-top: 10px;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(100, 200, 255, 0.3);
+}
+
+/* 底部统计 */
+.footer {
+    text-align: center;
+    margin-top: 60px;
+    padding: 30px;
+    color: #b0d9ff;
+    border-top: 2px solid rgba(100, 200, 255, 0.3);
+    font-size: 16px;
+}
+
+.footer p {
+    margin: 10px 0;
+}
+
+.footer span {
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* 动画 */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .employees-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .header .subtitle {
+        font-size: 1.2em;
+    }
+
+    .employees-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .employee-avatar-wrapper {
+        width: 100px;
+        height: 100px;
+    }
+
+    .employee-avatar img {
+        width: 94px;
+        height: 94px;
+    }
+}
